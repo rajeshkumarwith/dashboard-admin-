@@ -1,0 +1,48 @@
+a.docker
+1.include all depencies/packages our application
+->pip freeze > requirments.txt
+2.all the command and instruction are use to build to image
+->python:3.10.4-slim-buster
+3.WORKDIR /app
+
+
+for run docker
+1.docker build -t django_project .
+2.docker images
+3.docker run -d -p 9000:8080 django_project
+4.docker ps
+5.docker exec -it 98b5a99c690b /bin/bash
+6.ls
+7.pwd
+8.docker run --publish 9000:8080 django_project
+9.sudo service docker restart 
+10.docker run -it -p 8000:8000 django_project
+for docker-compose
+1.sudo apt-get upgrade docker-compose
+
+for restrart service.
+1.docker ps
+2.docker stop <container_id> 
+3.docker run --publish 9000:8000 django_project
+
+for docker-compose run
+1.sudo docker-compose build
+2.sudo docker-compose up
+
+
+
+github:
+1.git config --global user.name ''
+2.git config --global user.email ''
+github clone
+a.git remote add origin https://github.com/rajeshkumarwith/create-credentials-of-project 
+3.git init
+4.git status
+5.git log
+6.git add --all
+7.git commit -m ''
+8.git push origin master
+9. git push --set-upstream origin master
+10.git push --force origin main
+
+documentation=https://www.shortautomaton.com/
