@@ -6,7 +6,7 @@ import React, { useEffect,useState } from "react"
 const Page = () => {
   const [data,setData]=useState([])
   useEffect(() => {
-        fetch("http://127.0.0.1:8000/search").then((result) => {
+        fetch("http://psd2htmlx.com:7001/page/").then((result) => {
           result.json().then((resp) => {
             console.log(resp, 'resreafsdfsd')
             setData(resp)

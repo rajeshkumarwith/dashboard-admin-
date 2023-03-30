@@ -6,7 +6,7 @@ import React, { useEffect,useState } from "react"
 const Device = () => {
   const [data,setData]=useState([])
   useEffect(() => {
-        fetch("http://127.0.0.1:8000/device/").then((result) => {
+        fetch("http://psd2htmlx.com:7001/device/").then((result) => {
           result.json().then((resp) => {
             console.log(resp, 'resreafsdfsd')
             setData(resp)

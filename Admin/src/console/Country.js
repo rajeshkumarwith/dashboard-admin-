@@ -6,7 +6,7 @@ import React, { useEffect,useState } from "react"
 const Country = () => {
   const [data,setData]=useState([])
   useEffect(() => {
-        fetch("http://127.0.0.1:8000/country/").then((result) => {
+        fetch("http://psd2htmlx.com:7001/country/").then((result) => {
           result.json().then((resp) => {
             console.log(resp, 'resreafsdfsd')
             setData(resp)

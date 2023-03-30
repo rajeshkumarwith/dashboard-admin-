@@ -309,7 +309,7 @@ const Console = () => {
   const [col3, setcol3] = useState(false)
   const [col5, setcol5] = useState(true)
   useEffect(() => {
-    loadData('http://127.0.0.1:8000/profile/')
+    loadData('http://psd2htmlx.com:7001/kewords/')
       }, [])
 
 
