@@ -30,7 +30,7 @@ import PagesPricing from "../pages/Utility/pages-pricing"
 import Pages404 from "../pages/Utility/pages-404"
 import Pages500 from "../pages/Utility/pages-500"
 import PagesInvoice from "../pages/Utility/invoice"
-
+// import search from "../pages/console"
 //Ui
 import UiAlert from "../pages/Ui/UiAlert"
 import UiButtons from "../pages/Ui/UiButtons"
@@ -153,7 +153,8 @@ const userRoutes = [
   { path: "/ui-image-cropper", component: UiImageCropper },
 
   //console
-  {path:"/console-Console",component:Console},
+  {path:"/search-console",component:Console},
+  
   // Forms
   { path: "/basic-elements", component: BasicElements },
   { path: "/form-layouts", component: FormLayouts },

@@ -46,3 +46,8 @@ a.git remote add origin https://github.com/rajeshkumarwith/create-credentials-of
 10.git push --force origin main
 
 documentation=https://www.shortautomaton.com/
+
+
+
+react
+1.npm run build

@@ -16,6 +16,7 @@ const Apaexlinecolumn = () => {
       data: [37, 42, 38, 26, 47, 50, 54, 55, 43],
     },
   ]
+
   const options = {
     chart: {
       toolbar: {

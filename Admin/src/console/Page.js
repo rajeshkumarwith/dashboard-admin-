@@ -1,3 +1,4 @@
+import {BASE_URL}  from '../helpers/BaseUrl'
 
 // export default Console
 import React, { useEffect, useState } from "react"
@@ -12,7 +13,9 @@ const Page = () => {
   const [pre_url, setPreUrl] = useState([])
   const [next_url, setNextURl] = useState([])
   useEffect(() => {
-    loadData('http://psd2htmlx.com:7001/page/')
+    // loadData('http://psd2htmlx.com:7001/page/')
+    loadData(`${BASE_URL}/pages/`)
+    loadData('')
   }, [])
 
 
