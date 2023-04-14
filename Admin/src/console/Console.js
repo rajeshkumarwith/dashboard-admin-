@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import {
   TabContent,
   TabPane,
-  Collapse,
+  // Collapse,
   NavLink,
   NavItem,
   Nav,
@@ -34,28 +34,40 @@ import classnames from "classnames"
 // import Date from './Date'
 // import Sample from './Sample'
 import { BASE_URL } from '../helpers/BaseUrl'
-
+import Search from "./Search"
 const Console = () => {
   const [users, setUser] = useState([])
   const [page, setPage] = useState([])
-  const [country,setCountry]=useState([])
+  // const [country,setCountry]=useState([])
   const [sort, setSort] = useState(['impressions'])
   const [pre_url, setPreUrl] = useState(null)
   const [next_url, setNextURl] = useState(null)
   const [start_date, setStartDate] = useState("");
   const [end_date, setEndDate] = useState("");
   // const [data,setData]=useState([])
+  const [api,setApi]=useState([])
+  const [project,setProject]=useState([])
   const [modal_center, setmodal_center] = useState(false)
   const [activeTab, setactiveTab] = useState("1")
   const [activeTabV, setactiveTabV] = useState("15")
 
   useEffect(() => {
     // loadData('http://psd2htmlx.com:7001/kewords/')
-    loadData(`${BASE_URL}/kewords/`)
-    loadPageData(`${BASE_URL}/pages/`)
+    // loadData(`http://127.0.0.1:8000/api/`)
+    // loadPageData(`http://127.0.0.1:8000/api/`)
     // loadCountryData(`${BASE_URL}/country/`)
+    loadSearch(`${BASE_URL}//api/`)
   }, [])
 
+  function loadSearch(url){
+    fetch(url).then((result)=>{
+      result.json().then((resp)=>{
+        setApi(resp)
+        setPreUrl(resp.previous)
+        setNextURl(resp.next)
+      })
+    })
+  }
 
   function loadData(url) {
     fetch(url).then((result) => {
@@ -114,11 +126,13 @@ const Console = () => {
 
 
   function handleSubmit() {
-    let url = `http://127.0.0.1:8000/kewords/?start_date=${start_date}&end_date=${end_date}`
-    let pagerurl = `http://127.0.0.1:8000/pages/?start_date=${start_date}&end_date=${end_date}`
-    loadData(url)
-    loadPageData(pagerurl)
-    console.log(pagerurl, 'pppppppppp')
+    // let url = `http://127.0.0.1:8000/kewords/?start_date=${start_date}&end_date=${end_date}`
+    // let pagerurl = `http://127.0.0.1:8000/pages/?start_date=${start_date}&end_date=${end_date}`
+    let apiurl=`${BASE_URL}//api/?project=${project}`
+    // loadData(url)
+    // loadPageData(pagerurl)
+    loadSearch(apiurl)
+    console.log(apiurl,'aaaaaaaaaaaaaa')
     tog_center()
 
   }
@@ -139,7 +153,7 @@ const Console = () => {
               data-toggle="modal"
               data-target=".bs-example-modal-center"
             >
-              Date Filter
+              Add Property
             </button>
           </div>
 
@@ -147,7 +161,6 @@ const Console = () => {
         </Row>
         <Row>
           <Col lg={12}>
-
 
 
 
@@ -185,7 +198,7 @@ const Console = () => {
                       <span className="d-none d-sm-block">PAGE</span>
                     </NavLink>
                   </NavItem>
-                  {/* <NavItem>
+                  <NavItem>
                     <NavLink
                       style={{ cursor: "pointer" }}
                       className={classnames({
@@ -212,7 +225,7 @@ const Console = () => {
                       <span className="d-block d-sm-none"><i className="far fa-envelope"></i></span>
                       <span className="d-none d-sm-block">DEVICE</span>
                     </NavLink>
-                  </NavItem> */}
+                  </NavItem>
                 </Nav>
 
                 <TabContent activeTab={activeTab} className="p-3 text-muted">
@@ -230,7 +243,7 @@ const Console = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {users.map(item => (
+                          {api.map(item => (
                             <tr>
                               <td>{item.query}</td>
                               <td>{item.clicks}</td>
@@ -259,11 +272,11 @@ const Console = () => {
                     </Pagination>
                   </TabPane>
                   <TabPane tabId="2" className="p-3">
-                    <div className="table-responsive">
+                  <div className="table-responsive">
                       <table className="table mb-0">
                         <thead>
                           <tr>
-                            <th>Pages</th>
+                            <th>Page</th>
                             <th>Clicks</th>
                             <th>Impressions</th>
                             <th>Position</th>
@@ -271,7 +284,7 @@ const Console = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {page.map(item => (
+                          {api.map(item => (
                             <tr>
                               <td>{item.page}</td>
                               <td>{item.clicks}</td>
@@ -284,43 +297,9 @@ const Console = () => {
                         </tbody>
                       </table>
                     </div>
-                    {/* <div className="table-responsive">
-                      <table className="table mb-0">
-                        <thead>
-                          <tr>
-                            <th>Query</th>
-                            <th onClick={handleSortClicks}>Clicks</th>
-                            <th onClick={handleSortImpressions}>Impressions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {sortedData.map(row => (
-                            <tr key={row.page}>
-                              <td>{row.query}</td>
-                              <td>{row.clicks}</td>
-                              <td>{row.impressions}</td>
-                            </tr>
-                          ))} */}
-                    {/* </tbody>
-                      </table>
-                    </div> */}
-                    <Pagination aria-label="Page navigation example">
-                      <PaginationItem>
-                        {pre_url ?
-                          <PaginationLink href="#" onClick={() => loadPageData(pre_url)}>Previous</PaginationLink>
-                          :
-                          <PaginationLink href="#">Previous</PaginationLink>}
-                      </PaginationItem>
-                      <PaginationItem>
-                        {next_url ?
-                          <PaginationLink href="#" onClick={() => loadPageData(next_url)}>Next</PaginationLink>
-                          :
-                          <PaginationLink href="#" >Next</PaginationLink>}
-                      </PaginationItem>
-                    </Pagination>
                   </TabPane>
                   <TabPane tabId="3" className="p-3">
-                    {/* <div className="table-responsive">
+                    <div className="table-responsive">
                       <table className="table mb-0">
                         <thead>
                           <tr>
@@ -332,7 +311,7 @@ const Console = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {users.map(item => (
+                          {api.map(item => (
                             <tr>
                               <td>{item.country}</td>
                               <td>{item.clicks}</td>
@@ -344,34 +323,15 @@ const Console = () => {
                           ))}
                         </tbody>
                       </table>
-                    </div> */}
-                    <div className="table-responsive">
-                      <table className="table mb-0">
-                        <thead>
-                          <tr>
-                            <th>Query</th>
-                            <th onClick={handleSortClicks}>Clicks</th>
-                            <th onClick={handleSortImpressions}>Impressions</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {sortedData.map(row => (
-                            <tr key={row.page}>
-                              <td>{row.query}</td>
-                              <td>{row.clicks}</td>
-                              <td>{row.impressions}</td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
                     </div>
+                    
                   </TabPane>
                   <TabPane tabId="4" className="p-3">
                     <div className="table-responsive">
                       <table className="table mb-0">
                         <thead>
                           <tr>
-                            <th>DEVICE</th>
+                            <th>query</th>
                             <th>Clicks</th>
                             <th>Impressions</th>
                             <th>Position</th>
@@ -379,9 +339,9 @@ const Console = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          {users.map(item => (
+                          {api.map(item => (
                             <tr>
-                              <td>{item.device}</td>
+                              <td>{item.query}</td>
                               <td>{item.clicks}</td>
                               <td>{item.impressions}</td>
                               <td>{item.position}</td>
@@ -412,20 +372,20 @@ const Console = () => {
                   <Row>
                     <Col lg={6}>
                       <div className="g-col-4">
-                        <Label htmlFor="validationCustom01" value={start_date}>start_date</Label>
-                        <AvField
-                          name="start_date"
-                          placeholder="start_date"
-                          type="date"
-                          errorMessage="Enter start_date"
-                          className="form-control"
-                          validate={{ required: { value: true } }}
-                          id="validationCustom01"
-                          onChange={(e) => setStartDate(e.target.value)}
+                        <Label htmlFor="validationCustom01" value={project}>project</Label>
+                        <AvField 
+                        name='project'
+                        placeholder='project'
+                        errorMessage="Enter Project"
+                        className="form-control"
+                        validate={{required: {value:true}}}
+                        id="validationCustom01"
+                        onChange={(e)=>setProject(e.target.value)}
                         />
+
                       </div>
                     </Col>
-                    <Col lg={6}>
+                    {/* <Col lg={6}>
                       <div className="g-col-4">
                         <Label htmlFor="validationCustom02" value={end_date}>end_date</Label>
                         <AvField
@@ -439,7 +399,7 @@ const Console = () => {
                           onChange={(e) => setEndDate(e.target.value)}
                         />
                       </div>
-                    </Col>
+                    </Col> */}
                   </Row>
 
                   <div className="my-4 text-center">
