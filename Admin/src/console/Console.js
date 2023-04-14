@@ -56,7 +56,7 @@ const Console = () => {
     // loadData(`http://127.0.0.1:8000/api/`)
     // loadPageData(`http://127.0.0.1:8000/api/`)
     // loadCountryData(`${BASE_URL}/country/`)
-    loadSearch(`${BASE_URL}//api/`)
+    loadSearch(`${BASE_URL}/api/`)
   }, [])
 
   function loadSearch(url){
@@ -128,7 +128,7 @@ const Console = () => {
   function handleSubmit() {
     // let url = `http://127.0.0.1:8000/kewords/?start_date=${start_date}&end_date=${end_date}`
     // let pagerurl = `http://127.0.0.1:8000/pages/?start_date=${start_date}&end_date=${end_date}`
-    let apiurl=`${BASE_URL}//api/?project=${project}`
+    let apiurl=`${BASE_URL}/api/?project=${project}`
     // loadData(url)
     // loadPageData(pagerurl)
     loadSearch(apiurl)
