@@ -68,6 +68,7 @@
     "semantic-ui-react": "^2.1.4",
     "simplebar-react": "^2.3.0",
     "toastr": "^2.1.4",
+    "vuex": "^4.0.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import React, { useEffect } from "react"
+import React, { useState,useEffect } from "react"
 import { Row, Col, Card, Alert, Container } from "reactstrap"
 
 // availity-reactstrap-validation
@@ -16,19 +16,42 @@ import { Link } from "react-router-dom"
 import logo from "../../assets/images/logo-sm-dark.png"
 
 const Register = props => {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    
+    const handleSubmit = (event) => {
+            event.preventDefault();
+            const formData = new FormData();
+            formData.append('username', username);
+            formData.append('email', email);
+            formData.append('password', password);
+            fetch('http://localhost:8000/register/', {
+              method: 'POST',
+              body: formData,
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                console.log('Success:', data);
+                // props.history.push('/login')
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+          };
   // handleValidSubmit
-  const handleValidSubmit = (event, values) => {
-    props.registerUser(values)
-  }
-
-  useEffect(() => {
-    props.apiError("")
-    document.body.className = "authentication-bg";
-    // remove classname when component will unmount
-    return function cleanup() {
-      document.body.className = "";
-    };
-  });
+    const handleValidSubmit = (event, values) => {
+        props.registerUser(values)
+    }
+  
+    useEffect(() => {
+        props.apiError("")
+        document.body.className = "authentication-bg";
+        // remove classname when component will unmount
+        return function cleanup() {
+        document.body.className = "";
+        };
+    });
 
   return (
     <React.Fragment>
@@ -55,11 +78,12 @@ const Register = props => {
                 <div className="card-body pt-5">
 
                   <div className="p-2">
-                    <AvForm
+                    <AvForm  
                       className="form-horizontal"
-                      onValidSubmit={(e, v) => {
-                        handleValidSubmit(e, v)
-                      }}
+                    //   onValidSubmit={(e, v) => {
+                    //     handleValidSubmit(e, v)
+                    //   }}
+                    onSubmit={handleSubmit}
                     >
                       {props.user && props.user ? (
                         <Alert color="success">
@@ -76,25 +100,27 @@ const Register = props => {
 
                       <div className="mb-3">
                         <AvField
+                          name="username"
+                          label="username"
+                          type="text"
+                          required
+                          placeholder="Enter username"
+                          onChange={(e) => setUsername(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-3">
+                        <AvField
                           id="email"
                           name="email"
-                          label="Email"
+                          label="email"
                           className="form-control"
                           placeholder="Enter email"
                           type="email"
                           required
+                          onChange={(e) => setEmail(e.target.value)}
                         />
                       </div>
 
-                      <div className="mb-3">
-                        <AvField
-                          name="username"
-                          label="Username"
-                          type="text"
-                          required
-                          placeholder="Enter username"
-                        />
-                      </div>
                       <div className="mb-3">
                         <AvField
                           name="password"
@@ -102,6 +128,7 @@ const Register = props => {
                           type="password"
                           required
                           placeholder="Enter Password"
+                          onChange={(e) => setPassword(e.target.value)}
                         />
                       </div>
 
@@ -159,3 +186,50 @@ export default connect(mapStatetoProps, {
   apiError,
   registerUserFailed,
 })(Register)
+
+
+// import { useState } from 'react';
+
+// function Register() {
+//   const [username, setUsername] = useState('');
+//   const [email, setEmail] = useState('');
+//   const [password, setPassword] = useState('');
+
+//   const handleSubmit = (event) => {
+//     event.preventDefault();
+//     const formData = new FormData();
+//     formData.append('username', username);
+//     formData.append('email', email);
+//     formData.append('password', password);
+//     fetch('http://localhost:8000/register/', {
+//       method: 'POST',
+//       body: formData,
+//     })
+//       .then((response) => response.json())
+//       .then((data) => {
+//         console.log('Success:', data);
+//       })
+//       .catch((error) => {
+//         console.error('Error:', error);
+//       });
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <label>
+//         Username:
+//         <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+//       </label>
+//       <label>
+//         Email:
+//         <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+//       </label>
+//       <label>
+//         Password:
+//         <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+//       </label>
+//       <button type="submit">Sign up</button>
+//     </form>
+//   );
+// }
+// export default Register
