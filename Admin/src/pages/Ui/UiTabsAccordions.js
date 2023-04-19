@@ -61,7 +61,7 @@ const UiTabsAccordions = () => {
 
         <Breadcrumbs title="UI Elements" breadcrumbItem="Tabs & Accordions" />
 
-        <Row>
+        {/* <Row>
           <Col lg={6}>
             <Card>
               <CardBody>
@@ -296,19 +296,19 @@ const UiTabsAccordions = () => {
             </Card>
           </Col>
 
-        </Row>
+        </Row> */}
 
         <Row>
           <Col lg={6}>
             <Card>
               <CardBody>
-                <CardTitle className="h4">Vertical Nav Tabs</CardTitle>
-                <p className="card-title-desc">
-                  Example of Vertical nav tabs
-                  </p>
+                {/* <CardTitle className="h4">Vertical Nav Tabs</CardTitle> */}
+                {/* <p className="card-title-desc">
+                  Example of Vertical nav tabs */}
+                  {/* </p> */}
                 <Row>
                   <Col md={3}>
-                    <Nav pills className="flex-column">
+                    {/* <Nav pills className="flex-column">
 
                       <NavLink
                         style={{ cursor: "pointer" }}
@@ -362,9 +362,9 @@ const UiTabsAccordions = () => {
                         <span className="d-none d-sm-block">Settings</span>
                       </NavLink>
 
-                    </Nav>
+                    </Nav> */}
                   </Col>
-                  <Col md={9}>
+                  {/* <Col md={9}>
                     <TabContent activeTab={activeTabV} className="text-muted mt-4 mt-md-0">
                       <TabPane tabId="15">
                         <p>
@@ -420,7 +420,7 @@ const UiTabsAccordions = () => {
                                                     </p>
                       </TabPane>
                     </TabContent>
-                  </Col>
+                  </Col> */}
                 </Row>
 
               </CardBody>

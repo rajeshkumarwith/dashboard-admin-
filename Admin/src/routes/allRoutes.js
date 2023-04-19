@@ -108,6 +108,8 @@ import LockScreen from "../pages/AuthenticationInner/auth-lock-screen"
 import UserProfile from "../pages/Authentication/user-profile"
 
 import Console from "../console/Console"
+import Scope from "../console/scope"
+import Audit from "../console/audit"
 
 
 const userRoutes = [

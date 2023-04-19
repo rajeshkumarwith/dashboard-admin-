@@ -106,6 +106,13 @@ const SidebarContent = props => {
             </li>
 
             <li>
+              <Link to='/search-console' className="waves-has-arrow waves-effect">
+                <i className='mdi mdi-inbox-full'></i>
+                <span>{props.t('search-console')}</span>
+              </Link>
+            </li>
+            
+            <li>
               <Link to="/#" className="has-arrow waves-effect">
                 <i className="mdi mdi-inbox-full"></i>
                 <span>{props.t("Email")}</span>
