@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import React, { useState,useEffect } from "react"
 import { Row, Col, Card, Alert, Container } from "reactstrap"
 
+
 // availity-reactstrap-validation
 import { AvForm, AvField } from "availity-reactstrap-validation"
 
@@ -33,7 +34,7 @@ const Register = props => {
               .then((response) => response.json())
               .then((data) => {
                 console.log('Success:', data);
-                // props.history.push('/login')
+                props.history.push('/dashboard')
               })
               .catch((error) => {
                 console.error('Error:', error);

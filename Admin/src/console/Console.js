@@ -1,6 +1,6 @@
-// import React, { useEffect, useState } from "react"
+// // import React, { useEffect, useState } from "react"
 
-import UIdesign from "./Udesign"
+// import UIdesign from "./Udesign"
 
 // import {
 //   TabContent,

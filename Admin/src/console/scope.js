@@ -14,8 +14,10 @@ import {
   DropdownItem,
   DropdownToggle,
   Container,
+  Label
 } from "reactstrap"
 import { AvForm, AvField } from "availity-reactstrap-validation"
+import { useHistory } from 'react-router-dom';
 
 //Import Breadcrumb
 // import Breadcrumbs from "../../components/Common/Breadcrumb"
@@ -36,6 +38,25 @@ const Scope = () => {
   const [protocol, setProtocol] = useState(options[0].value);
   const [domain, setDomain] = useState('');
   const [path, setPath] = useState('');
+  const [project, setProject] = useState('');
+  const history=useHistory();
+
+  function loadData(url) {
+    fetch(url).then((result) => {
+      result.json().then((resp) => {
+        console.log(resp, 'resreafsdfsd')
+        setProject(resp)
+        history.push('/dashboard')
+
+      })
+    })
+  }
+
+
+  function handelSubmit(props) {
+    // console.log(project, "gfhfghgfhfgh")
+    loadData(`http://127.0.0.1:8000/verify/?project=${project}`)
+  }
 
   const handlSubmit = (event) => {
     event.preventDefault();
@@ -121,12 +142,12 @@ const Scope = () => {
 
                 </CardSubtitle>
 
-                <AvForm>
-                
-                    <Container>
-                    <Row>
-                      <Col sm={1} className="me-2" >
-                        <select className="p-1"  id="dropdown">
+                <AvForm onSubmit={() => handelSubmit()}> 
+ 
+                 <Container> 
+                    <Row> 
+                       <Col sm={1} className="me-2" >
+                        <select className="p-1" id="dropdown">
                           <option value="N/A">https</option>
                           <option value="1">https</option>
                           <option value="2">http</option>
@@ -134,13 +155,14 @@ const Scope = () => {
 
                       </Col>
                       <Col sm={7} >
-                        <AvField 
+                        <AvField
                           className="p-1"
                           name="Domain or path"
                           placeholder="Type Something"
                           type="text"
                           errorMessage="Enter Domain path"
                           validate={{ required: { value: true } }}
+                          onChange={(e) => setProject(e.target.value)}
                         />
 
                       </Col>
@@ -153,9 +175,9 @@ const Scope = () => {
                         </select>
 
                       </Col>
-                      </Row>
+                    </Row> 
 
-                    </Container>
+                  </Container>
                   <p className='mb-5'>We recommend using the “http + https” protocol along with the non-www version of your domain.
                     You’ll get the most complete backlink profile and accurate tracking data this way.</p>
                   <AvField
@@ -165,21 +187,70 @@ const Scope = () => {
                     placeholder="project name"
                     errorMessage="Enter project name"
                     validate={{ required: { value: true } }}
+                    onChange={(e) => setProject(e.target.value)}
                   />
-                  
-                  
-                </AvForm>
-                  <FormGroup className="mb-5" >
-                    <div style={{
-                      textAlign: 'center',
-                      marginVertical: 8
-                    }}>
-                      <Button type="submit" color="primary" className="mb-5"
-                      >
-                        Continue
-                      </Button>
+
+                  <div className="form-check mb-3">
+                    <div className="invalid-feedback">
+                      You must agree before submitting.
                     </div>
-                  </FormGroup>
+                  </div>
+                  <Button color="primary" type="submit">
+                    Submit form
+                  </Button>
+                </AvForm> 
+                {/* <AvForm className="needs-validation" onSubmit={() => handelSubmit()}>
+                  <Row>
+                    <Col md="12">
+                      <div className="mb-3">
+                        <Label htmlFor="validationCustom01" value={project}>project</Label>
+                        <AvField
+                          className="mb-4"
+                          name="project name"
+                          type="project name"
+                          placeholder="project name"
+                          errorMessage="Enter project name"
+                          validate={{ required: { value: true } }}
+                          onChange={(e) => setProject(e.target.value)}
+                        />
+                      </div>
+                    </Col> */}
+                    {/* <Col md="6">
+                      <div className="mb-3">
+                        <Label htmlFor="validationCustom02" value={project}>project</Label>
+                        <AvField
+                          className="mb-4"
+                          name="project name"
+                          type="project name"
+                          placeholder="project name"
+                          errorMessage="Enter project name"
+                          validate={{ required: { value: true } }}
+                          onChange={(e) => setProject(e.target.value)}
+                        />
+                      </div> */}
+                    {/* </Col> */}
+                  {/* </Row> */}
+
+                  {/* <div className="form-check mb-3">
+                    <div className="invalid-feedback">
+                      You must agree before submitting.
+                    </div>
+                  </div>
+                  <Button color="primary" type="submit">
+                    Submit form
+                  </Button> */}
+                {/* </AvForm> */}
+                {/* <FormGroup className="mb-5" >
+                  <div style={{
+                    textAlign: 'center',
+                    marginVertical: 6
+                  }}>
+                    <Button type="submit" color="primary" className="mb-5"
+                    >
+                      Continue
+                    </Button>
+                  </div>
+                </FormGroup> */}
               </CardBody>
             </Card>
           </Col>
