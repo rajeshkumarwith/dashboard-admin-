@@ -430,7 +430,7 @@ const UiTabsAccordions = () => {
           <Col lg={6}>
             <Card>
               <CardBody>
-                <CardTitle className="h4">Custom Tabs</CardTitle>
+                {/* <CardTitle className="h4">Custom Tabs</CardTitle>
                 <p className="card-title-desc">
                   Example of custom tabs
                   </p>
@@ -491,10 +491,10 @@ const UiTabsAccordions = () => {
                       <span className="d-block d-sm-none"><i className="fas fa-cog"></i></span>
                       <span className="d-none d-sm-block">Settings</span>
                     </NavLink>
-                  </NavItem>
-                </Nav>
+                  </NavItem> */}
+                {/* </Nav> */}
 
-                <TabContent activeTab={activeTabJustify}>
+                {/* <TabContent activeTab={activeTabJustify}>
                   <TabPane tabId="5" className="p-3">
                     <p className="mb-0">
                       Raw denim you probably haven't heard of them jean shorts Austin.
@@ -540,7 +540,7 @@ const UiTabsAccordions = () => {
                       mustache readymade keffiyeh craft.
                                             </p>
                   </TabPane>
-                </TabContent>
+                </TabContent> */}
               </CardBody>
             </Card>
           </Col>
@@ -550,7 +550,7 @@ const UiTabsAccordions = () => {
           <Col lg={6}>
             <Card>
               <CardBody>
-                <CardTitle className="h4">Default Collapse</CardTitle>
+                {/* <CardTitle className="h4">Default Collapse</CardTitle>
                 <p className="card-title-desc mb-3">
                   You can use a link with the{" "}
                   <code className="highlighter-rouge">href</code> attribute,
@@ -593,7 +593,7 @@ const UiTabsAccordions = () => {
                     keffiyeh helvetica, craft beer labore wes anderson cred
                     nesciunt sapiente ea proident.
                       </CardBody>
-                </Collapse>
+                </Collapse> */}
               </CardBody>
             </Card>
           </Col>
@@ -615,7 +615,7 @@ const UiTabsAccordions = () => {
                         Accordion Item #1
                                                 </button>
                     </h2>
-                    <Collapse id="collapseOne" className="accordion-collapse show"
+                    {/* <Collapse id="collapseOne" className="accordion-collapse show"
                       isOpen={col1}>
                       <div className="accordion-body">
                         <strong>This is the first item's accordion body.</strong> It is hidden
@@ -627,7 +627,7 @@ const UiTabsAccordions = () => {
                                                     the <code>.accordion-body</code>, though the transition does limit
                                                     overflow.
                                                 </div>
-                    </Collapse>
+                    </Collapse> */}
                   </div>
                   <div className="accordion-item">
                     <h2 className="accordion-header" id="headingTwo">

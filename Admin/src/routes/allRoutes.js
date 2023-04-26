@@ -112,6 +112,7 @@ import Scope from "../console/scope"
 import Audit from "../console/audit"
 
 
+
 const userRoutes = [
   { path: "/dashboard", component: Dashboard },
   { path : '/dashboard2' , component : Dashboard2},
@@ -156,6 +157,8 @@ const userRoutes = [
 
   //console
   {path:"/search-console",component:Console},
+
+  
   
   // Forms
   { path: "/basic-elements", component: BasicElements },

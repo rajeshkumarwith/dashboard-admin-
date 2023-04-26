@@ -55,9 +55,10 @@ const Navbar = () => {
     }
   }
 
-  const parentFunction = () => {
-    alert('asdfsadfasd')
-    setactiveTabJustify("7")
+  const parentFunction = (value) => {
+    // alert('asdfsadfasd')
+    setactiveTabJustify(value)
+    
   }
 
 
@@ -82,6 +83,7 @@ const Navbar = () => {
       setactiveTabJustify2(tab)
     }
   }
+
   function removeBodyCss() {
     document.body.classList.add("no_padding")
   }
@@ -153,7 +155,7 @@ const Navbar = () => {
 
                 <TabContent activeTab={activeTabJustify}>
                   <TabPane tabId="5" className="p-1">
-                    <Scope />
+                    <Scope parentFunction={parentFunction}/>
                   </TabPane>
                   <TabPane tabId="6" className="p-2" > 
                   <div onClick={() => {

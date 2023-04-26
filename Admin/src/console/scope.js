@@ -28,7 +28,12 @@ const options = [
   { value: 'http://', label: 'http://' }
 ];
 
-const Scope = () => {
+
+// interface ChildProps {
+//   parentFunction: Function
+// }
+
+const Scope = (props) => {
   const [singlebtn, setSinglebtn] = useState(false)
   const [fnm, setfnm] = useState(false)
   const [lnm, setlnm] = useState(false)
@@ -46,16 +51,17 @@ const Scope = () => {
       result.json().then((resp) => {
         console.log(resp, 'resreafsdfsd')
         setProject(resp)
-        history.push('/dashboard')
+        // history.push('/dashboard')
 
       })
     })
   }
 
 
-  function handelSubmit(props) {
+  function handelSubmit() {
     // console.log(project, "gfhfghgfhfgh")
     loadData(`http://127.0.0.1:8000/verify/?project=${project}`)
+    props.parentFunction("6")
   }
 
   const handlSubmit = (event) => {
@@ -195,10 +201,13 @@ const Scope = () => {
                       You must agree before submitting.
                     </div>
                   </div>
-                  <Button color="primary" type="submit">
+                  <Button  color="primary" type="submit">
                     Submit form
                   </Button>
                 </AvForm> 
+                {/* <div>
+                 <Button onClick={() => props.parentFunction()}   color="primary" type="submit" className="text-center">SubmitData</Button>
+                 </div> */}
                 {/* <AvForm className="needs-validation" onSubmit={() => handelSubmit()}>
                   <Row>
                     <Col md="12">
