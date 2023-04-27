@@ -51,3 +51,9 @@ documentation=https://www.shortautomaton.com/
 
 react
 1.npm run build
+
+
+
+
+
+

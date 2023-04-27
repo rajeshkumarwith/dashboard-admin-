@@ -13,10 +13,7 @@
 
 
 import React from 'react';
-
 import { GoogleLogin } from '@react-oauth/google';
-// import { useEffect, useState } from 'react';
-// const { createProxyMiddleware } = require('http-proxy-middleware');
 
 
 const Google= () => {
@@ -24,6 +21,8 @@ const Google= () => {
 
   return (
     <GoogleLogin
+    shape="rectangular"
+    ata-text="signup_with"
       onSuccess={credentialResponse => {
         console.log(credentialResponse);
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Button,
   Card,
   CardBody,
   Col,
@@ -84,7 +85,9 @@ const FormAdvanced = () => {
                     </div>
                   </div>
                   </Row>
-                  
+                  <div className="text-center">
+                  <Button type='submit'>submit</Button>
+                  </div>
                   
                 </form>
               </CardBody>

@@ -161,7 +161,7 @@ const Navbar = () => {
                   <div onClick={() => {
                         abc()
                       }}
-                     >ABDD</div>
+                     ></div>
                       <Ownership parentFunction={parentFunction}/>
 
                     {/* <div onClick={()=>{

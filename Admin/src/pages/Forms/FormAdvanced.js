@@ -372,7 +372,7 @@ const FormAdvanced = () => {
                   Here are a few types of switches.{" "}
                 </p>
 
-                {/* <div>
+                <div>
                   <Switch
                     uncheckedIcon={<Offsymbol />}
                     checkedIcon={<OnSymbol />}
@@ -523,14 +523,14 @@ const FormAdvanced = () => {
                       data-off-label="No"
                     />
                   </div>
-                </div> */}
+                </div>
               </CardBody>
             </Card>
           </Col>
         </Row>
 
         <Row>
-          {/* <Col lg="6">
+          <Col lg="6">
             <Card>
               <CardBody>
                 <h4 className="card-title">React Colorpicker</h4>
@@ -725,7 +725,7 @@ const FormAdvanced = () => {
                 </Form>
               </CardBody>
             </Card>
-          </Col> */}
+          </Col>
           <Col lg="6">
             <Card>
               <CardBody>
@@ -819,7 +819,7 @@ const FormAdvanced = () => {
           </Col>
         </Row>
 
-        {/* <Row>
+        <Row>
           <Col lg="6">
             <Card>
               <CardBody>
@@ -959,7 +959,7 @@ const FormAdvanced = () => {
                 </p>
                 <Form>
                   <div className="mb-3">
-                    <Label>Using data attributes</Label>
+                    <Label>Using attributesdata </Label>
                     <InputGroup>
                       <div
                         className="input-group-append"
@@ -1130,7 +1130,7 @@ const FormAdvanced = () => {
               </CardBody>
             </Card>
           </Col>
-        </Row> */}
+        </Row>
 
         <Row>
           <Col lg={12}>
@@ -1138,7 +1138,7 @@ const FormAdvanced = () => {
               <CardBody>
                 <h4 className="card-title mb-4">Datepicker</h4>
                 <Row>
-                  {/* <Col xl={6} sm={6}>
+                  <Col xl={6} sm={6}>
                     <div>
                       <h4 className="font-size-14 mb-3">Demo</h4>
                       <div className="docs-datepicker">
@@ -1189,8 +1189,8 @@ const FormAdvanced = () => {
                         </div>
                       </div>
                     </div>
-                  </Col> */}
-                  {/* <Col xl={6} cm={6}>
+                  </Col>
+                  <Col xl={6} cm={6}>
                     <div className="mt-4 mt-xl-0">
                       <h4 className="font-size-14 mb-3">Methods</h4>
                       <div className="docs-actions">
@@ -1323,8 +1323,8 @@ const FormAdvanced = () => {
                           </button>
                         </div>
                       </div>
-                    </div> */}
-                  {/* </Col> */}
+                    </div>
+                   </Col> 
                 </Row>
               </CardBody>
             </Card>
