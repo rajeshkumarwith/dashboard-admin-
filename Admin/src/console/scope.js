@@ -23,6 +23,8 @@ import { useHistory } from 'react-router-dom';
 // import Breadcrumbs from "../../components/Common/Breadcrumb"
 import Breadcrumbs from "../components/Common/Breadcrumb"
 import Data from "./dropdown"
+import Select from "react-select";
+
 const options = [
   { value: 'https://', label: 'https://' },
   { value: 'http://', label: 'http://' }
@@ -32,6 +34,34 @@ const options = [
 // interface ChildProps {
 //   parentFunction: Function
 // }
+const optionGroup = [
+  {
+    label: "select",
+    options: [
+      { label: "https://", value: "https://" },
+      { label: "https://", value: "https://" },
+    ],
+  },
+  // {
+  //   label: "Camping",
+  //   options: [
+  //     { label: "Tent", value: "Tent" },
+  //     { label: "Flashlight", value: "Flashlight" },
+  //     { label: "Toilet Paper", value: "Toilet Paper" },
+  //   ],
+  // },
+];
+
+const DomainGroup = [
+  {
+    label: "SubDomain",
+    options: [
+      { label: "Exact URL", value: "Exact URL" },
+      { label: "Domain", value: "Domain" },
+      { label: "SubDomains", value: "SubDomains" }
+    ]
+  }
+];
 
 const Scope = (props) => {
   const [singlebtn, setSinglebtn] = useState(false)
@@ -44,7 +74,16 @@ const Scope = (props) => {
   const [domain, setDomain] = useState('');
   const [path, setPath] = useState('');
   const [project, setProject] = useState('');
-  const history=useHistory();
+  const history = useHistory();
+  const [selectedGroup, setselectedGroup] = useState(null);
+  // const [selectedMulti, setselectedMulti] = useState(null);
+  function handleSelectGroup(selectedGroup) {
+    setselectedGroup(selectedGroup);
+  }
+
+  // function handleMulti(selectedMulti) {
+  //   setselectedMulti(selectedMulti);
+  // }
 
   function loadData(url) {
     fetch(url).then((result) => {
@@ -128,16 +167,19 @@ const Scope = (props) => {
 
   return (
     <React.Fragment>
-      <div className="page-content" style={{
-        display: "flex",
-        alignItems: "center",
-        height: "100%"
-      }}>
-        <Breadcrumbs title="Form" breadcrumbItem="Form Validation" />
+      <div className="mt-5 text-center"
+      // style={{
+      //   display: "flex",
+      //   alignItems: "center",
+      //   height: "100%",}}
+      >
+
         <Row>
+          <Col lg="2">
+          </Col>
           <Col lg="8">
             {/* <Data /> */}
-            <Card>
+            <Card className="text-center">
 
               <CardBody>
                 <CardTitle className="margin-auto"></CardTitle>
@@ -148,21 +190,29 @@ const Scope = (props) => {
 
                 </CardSubtitle>
 
-                <AvForm onSubmit={() => handelSubmit()}> 
- 
-                 <Container> 
-                    <Row> 
-                       <Col sm={1} className="me-2" >
-                        <select className="p-1" id="dropdown">
-                          <option value="N/A">https</option>
-                          <option value="1">https</option>
-                          <option value="2">http</option>
-                        </select>
+                <AvForm onSubmit={() => handelSubmit()}>
 
+                  <Container>
+                    <Row>
+                      <Col sm={2} className="" >
+                        <form>
+                          <div className="mb-3">
+                            {/* <Label>Single Select</Label> */}
+                            <Select
+                              value={selectedGroup}
+                              onChange={() => {
+                                handleSelectGroup();
+                              }}
+                              options={optionGroup}
+                              classNamePrefix="select2-selection"
+                            />
+                          </div>
+
+                        </form>
                       </Col>
-                      <Col sm={7} >
+                      <Col sm={8} >
                         <AvField
-                          className="p-1"
+                          className="p-2"
                           name="Domain or path"
                           placeholder="Type Something"
                           type="text"
@@ -172,94 +222,50 @@ const Scope = (props) => {
                         />
 
                       </Col>
-                      <Col sm={1} >
-                        <select className="p-1" id="dropdown">
-                          <option value="N/A">SubDomain</option>
-                          <option value="1">Exact URL</option>
-                          <option value="2">Domain</option>
-                          <option value="3">SubDomains</option>
-                        </select>
-
+                      <Col sm={2} >
+                        <div className="mb-3">
+                          <Select
+                            value={selectedGroup}
+                            onChange={() => {
+                              handleSelectGroup();
+                            }}
+                            options={DomainGroup}
+                            classNamePrefix="select2-selection"
+                          />
+                        </div>
                       </Col>
-                    </Row> 
+                    </Row>
+                    <Row>
+                      <Col lg="2">
+                      </Col>
+                      <Col lg='8'>
+                        <p className='mb-4'>We recommend using the “http + https” protocol along with the non-www version of your domain.
+                          You’ll get the most complete backlink profile and accurate tracking data this way.</p>
 
+
+                        <AvField
+                          className="p-2"
+                          name="project name"
+                          type="project name"
+                          placeholder="project name"
+                          errorMessage="Enter project name"
+                          validate={{ required: { value: true } }}
+                          onChange={(e) => setProject(e.target.value)}
+                        />
+                        <div className="form-check mb-2">
+                          <div className="invalid-feedback">
+                            You must agree before submitting.
+                          </div>
+                        </div>
+                        <Button color="primary" type="submit">
+                          Submit form
+                        </Button>
+                      </Col>
+                    </Row>
                   </Container>
-                  <p className='mb-5'>We recommend using the “http + https” protocol along with the non-www version of your domain.
-                    You’ll get the most complete backlink profile and accurate tracking data this way.</p>
-                  <AvField
-                    className="mb-4"
-                    name="project name"
-                    type="project name"
-                    placeholder="project name"
-                    errorMessage="Enter project name"
-                    validate={{ required: { value: true } }}
-                    onChange={(e) => setProject(e.target.value)}
-                  />
 
-                  <div className="form-check mb-3">
-                    <div className="invalid-feedback">
-                      You must agree before submitting.
-                    </div>
-                  </div>
-                  <Button  color="primary" type="submit">
-                    Submit form
-                  </Button>
-                </AvForm> 
-                {/* <div>
-                 <Button onClick={() => props.parentFunction()}   color="primary" type="submit" className="text-center">SubmitData</Button>
-                 </div> */}
-                {/* <AvForm className="needs-validation" onSubmit={() => handelSubmit()}>
-                  <Row>
-                    <Col md="12">
-                      <div className="mb-3">
-                        <Label htmlFor="validationCustom01" value={project}>project</Label>
-                        <AvField
-                          className="mb-4"
-                          name="project name"
-                          type="project name"
-                          placeholder="project name"
-                          errorMessage="Enter project name"
-                          validate={{ required: { value: true } }}
-                          onChange={(e) => setProject(e.target.value)}
-                        />
-                      </div>
-                    </Col> */}
-                    {/* <Col md="6">
-                      <div className="mb-3">
-                        <Label htmlFor="validationCustom02" value={project}>project</Label>
-                        <AvField
-                          className="mb-4"
-                          name="project name"
-                          type="project name"
-                          placeholder="project name"
-                          errorMessage="Enter project name"
-                          validate={{ required: { value: true } }}
-                          onChange={(e) => setProject(e.target.value)}
-                        />
-                      </div> */}
-                    {/* </Col> */}
-                  {/* </Row> */}
+                </AvForm>
 
-                  {/* <div className="form-check mb-3">
-                    <div className="invalid-feedback">
-                      You must agree before submitting.
-                    </div>
-                  </div>
-                  <Button color="primary" type="submit">
-                    Submit form
-                  </Button> */}
-                {/* </AvForm> */}
-                {/* <FormGroup className="mb-5" >
-                  <div style={{
-                    textAlign: 'center',
-                    marginVertical: 6
-                  }}>
-                    <Button type="submit" color="primary" className="mb-5"
-                    >
-                      Continue
-                    </Button>
-                  </div>
-                </FormGroup> */}
               </CardBody>
             </Card>
           </Col>

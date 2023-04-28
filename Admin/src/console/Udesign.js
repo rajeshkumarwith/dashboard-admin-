@@ -100,13 +100,10 @@ const Navbar = () => {
 
         <Row>
           <Col lg={12}>
-            <Card>
+            {/* <Card>
               <CardBody>
-                <CardTitle className="h4">Custom Tabs</CardTitle>
-                <p className="card-title-desc">
-                  Example of custom tabs
-                </p>
-
+                <CardTitle className="h4">Custom Tabs</CardTitle> */}
+              
                 <Nav tabs className="nav-tabs-custom nav-justified">
                   <NavItem>
                     <NavLink
@@ -174,9 +171,7 @@ const Navbar = () => {
                     <Audit />
                   </TabPane>
                 </TabContent>
-                
-              </CardBody>
-            </Card>
+
           </Col>
         </Row>
       </div>
