@@ -277,7 +277,28 @@ const Scope = (props) => {
 
 export default Scope
 
+// import {
+//   Row,
+//   Col,
 
+// } from "reactstrap"
+// import GoogleAuth from './GoogleAuth';
 
+// function App() {
+//   return (
+//     <div className="mt-4">
+//     <Row>
+//     <Col lg='3'>
+//      </Col>
+//      <Col lg='6'>
+//      <GoogleAuth>
+//       </GoogleAuth>
+//      </Col>
+//      <Col lg='3'>
+//      </Col>
+//     </Row>
+//     </div>
+//   );
+// }
 
-
+// export default App

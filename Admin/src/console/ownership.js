@@ -12,27 +12,22 @@ import {
 
 import logo from './logo'
 import { GoogleOAuthProvider } from '@react-oauth/google';
-import Google from './googleLogin';
+import Google from './GoogleAuth';
 import { GoogleLogin } from '@react-oauth/google';
 
 
-function Ownership() {
+function Ownership({ onSuccess, onFailure }) {
+  const onSuccessHandler = (response) => {
+    onSuccess(response.tokenObj.access_token);
+};
+
+const onFailureHandler = (error) => {
+    onFailure(error);
+};
+
   return (
     <Row className='mt-5'>
-      {/* <p className='text-center'>Connect your Google Account and allow access to your Search Console data. </p>
-      <p className='text-center'>If your website is verified in your Google Search Console, it will be automatically verified in Ahrefs</p>
-      <Col lg={5}>
-      </Col>
-      <Col lg={6}>
-        <div className="App">
-          <header className="App-header">
-            <GoogleOAuthProvider clientId="286943146870-h21okc0jtogcva4mrmi28h4fpkcaagum.apps.googleusercontent.com">
-              
-                <Google/>
-            </GoogleOAuthProvider>
-          </header>
-        </div>
-      </Col> */}
+     
       <Col lg={3}>
       </Col>
       <Col lg={6}>
@@ -50,7 +45,7 @@ function Ownership() {
           <GoogleLogin
                 shape="rectangular"
                 ata-text="signup_with"
-                buttonText="Sign in with Google"
+                // buttonText="Sign in with Google"
                 onSuccess={credentialResponse => {
                   console.log(credentialResponse);
 
@@ -59,6 +54,12 @@ function Ownership() {
                   console.log('Login Failed');
                 }}
                 useOneTap
+                
+                // // clientId='286943146870-h21okc0jtogcva4mrmi28h4fpkcaagum.apps.googleusercontent.com'
+                // buttonText="Sign in with Google"
+                // onSuccess={onSuccessHandler}
+                // onFailure={onFailureHandler}
+
               />
         
             

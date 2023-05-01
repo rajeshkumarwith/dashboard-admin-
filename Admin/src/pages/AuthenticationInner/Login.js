@@ -14,7 +14,7 @@ import { AvForm, AvField } from "availity-reactstrap-validation"
 import { loginUser, apiError, socialLogin } from "../../store/actions"
 
 // import images
-import logo from "../../assets/images/logo-sm-dark.png"
+// import logo from "../../assets/images/logo-sm-dark.png"
 
 // const Login = (props) => {
 //   useEffect(() => {
@@ -73,9 +73,9 @@ function Login(props){
                   <div className="position-relative">
                     <h5 className="text-white font-size-20">Welcome Back !</h5>
                     <p className="text-white-50 mb-0">Sign in to continue to Qovex.</p>
-                    <Link to="/" className="logo logo-admin mt-4">
+                    {/* <Link to="/" className="logo logo-admin mt-4">
                       <img src={logo} alt="" height="30" />
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
                 <div className="card-body pt-5">
