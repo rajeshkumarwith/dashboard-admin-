@@ -4,7 +4,8 @@ import { Redirect } from "react-router-dom"
 // Dashboard
 import Dashboard from "../pages/Dashboard/index"
 import Dashboard2 from "../pages/Dashboard2.js/index.js"
-
+import Manual from "../manualsearch/Manual"
+import Auth from "../googleauth/Auth"
 // Pages Calendar
 import Calendar from "../pages/Calendar/index"
 
@@ -158,6 +159,11 @@ const userRoutes = [
   //console
   {path:"/search-console",component:Console},
 
+  //manual
+  {path:"/manual" , component:Manual},
+
+  //google auth
+  {path:"/auth",component:Auth},
   
   
   // Forms

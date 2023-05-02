@@ -108,7 +108,7 @@ const SidebarContent = props => {
             <li>
               <Link to='/search-console' className="waves-has-arrow waves-effect">
                 <i className='mdi mdi-inbox-full'></i>
-                <span>{props.t('search-console')}</span>
+                <span>{props.t('Search Console')}</span>
               </Link>
             </li>
             

@@ -14,6 +14,7 @@ import logo from './logo'
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import Google from './GoogleAuth';
 import { GoogleLogin } from '@react-oauth/google';
+import { Routes, Route } from 'react-router-dom';
 
 
 function Ownership({ onSuccess, onFailure }) {
@@ -33,9 +34,9 @@ const onFailureHandler = (error) => {
       <Col lg={6}>
         <Card>
           <CardTitle>
-          <div className='text-center'>
+           <div className='text-center'> 
           <p className='text-center'>Connect your Google Account and allow access to your Search Console data. </p>
-          <p className='text-center'>If your website is verified in your Google Search Console, it will be automatically verified</p>
+          <p className='text-center'>If your website is verified in your Google Search Console, it will be automatically verified</p> 
           <GoogleOAuthProvider clientId="286943146870-h21okc0jtogcva4mrmi28h4fpkcaagum.apps.googleusercontent.com">
            
          <Row>

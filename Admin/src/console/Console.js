@@ -1,11 +1,14 @@
 
 
-import Udesign from "./Udesign"
+import Navbar from "./Udesign"
 
-const Console=()=>{
+const Console=(props)=>{
   return(
     <>
-    <Udesign/>
+    <Navbar 
+      props = {props}
+      history = {props.history}
+      />
     </>
   )
 }

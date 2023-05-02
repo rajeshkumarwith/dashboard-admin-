@@ -87,20 +87,45 @@ const Scope = (props) => {
 
   function loadData(url) {
     fetch(url).then((result) => {
+      console.log(result.json(),'rrrrrrrrrrrrrrrrrrrr')
+      if (result.status>=400){
+        result.json()
+      }else{
+        result.json().then(((data)=>localStorage.setItem('authUser',JSON.stringify(data))))
+        props.parentFunction("6")
+
+
+      }
       result.json().then((resp) => {
         console.log(resp, 'resreafsdfsd')
         setProject(resp)
-        // history.push('/dashboard')
+        
+        
 
       })
     })
   }
+  // if(response.status >=400 ){
+  //   response.json()
+  //   .then((data) => {
+  //     console.log(data)
+  //   })
+    
 
+  // }else{
+  //   response.json()
+  //   .then((data) => {
+  //     localStorage.setItem("authUser", JSON.stringify(data))
+  //     props.history.push('/dashboard')
+  //   })
+    
+    
+  // }
 
   function handelSubmit() {
     // console.log(project, "gfhfghgfhfgh")
     loadData(`http://127.0.0.1:8000/verify/?project=${project}`)
-    props.parentFunction("6")
+    // props.parentFunction("6")
   }
 
   const handlSubmit = (event) => {
@@ -195,20 +220,20 @@ const Scope = (props) => {
                   <Container>
                     <Row>
                       <Col sm={2} className="" >
-                        <form>
-                          <div className="mb-3">
+                        {/* <form> */}
+                          {/* <div className="mb-3">
                             {/* <Label>Single Select</Label> */}
-                            <Select
+                            {/* <Select
                               value={selectedGroup}
                               onChange={() => {
                                 handleSelectGroup();
                               }}
                               options={optionGroup}
-                              classNamePrefix="select2-selection"
-                            />
-                          </div>
+                              classNamePrefix="select2-selection" */}
+                            
+                          {/* </div> */}
 
-                        </form>
+                        {/* </form> */}
                       </Col>
                       <Col sm={8} >
                         <AvField
@@ -223,7 +248,7 @@ const Scope = (props) => {
 
                       </Col>
                       <Col sm={2} >
-                        <div className="mb-3">
+                        {/* <div className="mb-3">
                           <Select
                             value={selectedGroup}
                             onChange={() => {
@@ -232,7 +257,7 @@ const Scope = (props) => {
                             options={DomainGroup}
                             classNamePrefix="select2-selection"
                           />
-                        </div>
+                        </div> */}
                       </Col>
                     </Row>
                     <Row>
