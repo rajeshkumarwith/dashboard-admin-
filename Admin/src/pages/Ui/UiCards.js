@@ -576,7 +576,7 @@ const UiCards = props => {
             <h4 className="my-3">Cards Masonry</h4>
             <CardColumns>
               <Card>
-                <CardImg top src={img3} alt="qovex" />
+                <CardImg top src={img3} alt="Doddle HQ" />
                 <CardBody>
                   <CardTitle>Card title that wraps to a new line</CardTitle>
                   <CardText>

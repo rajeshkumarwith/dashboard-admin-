@@ -214,7 +214,9 @@ function Navbar(props) {
   return (
     <>
       <React.Fragment>
-        <Breadcrumbs title="UI Elements" breadcrumbItem="Tabs & Accordions" />
+        <div style={{'marginTop':'120px'}}> 
+          <h1>Search Console</h1>
+        </div>
         <div className="page-content">
           <Row>
             <Col lg='2'>

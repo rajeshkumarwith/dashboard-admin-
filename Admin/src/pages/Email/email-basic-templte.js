@@ -278,7 +278,7 @@ const EmailBasicTemplte = () => {
                                         }}
                                         valign="top"
                                       >
-                                        <b>Qovex</b>
+                                        <b>Doddle HQ</b>
                                         <p>Support Team</p>
                                       </td>
                                     </tr>

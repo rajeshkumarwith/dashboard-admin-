@@ -17,6 +17,7 @@ import "flatpickr/dist/themes/material_blue.css";
 
 //Import Breadcrumb
 import Breadcrumbs from "../components/Common/Breadcrumb";
+import { BASE_URL } from '../helpers/BaseUrl'
 
 
 
@@ -40,32 +41,50 @@ const optionGroup = [
 ];
 
 const FormAdvanced = () => {
-  const [selectedMulti, setselectedMulti] = useState(null);
   const [user, setUser] = useState(null);
-  // const [selectedItems, setSelectedItems] = useState(null)
+  const [items, setItems] = useState([]);
+  const [data,setData]=useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedMulti, setselectedMulti] = useState(null);
+
 
   useEffect(() => {
-    loaddata(`http://127.0.0.1:8000/keyword`)
-  }, [])
-
+    loaddata(`${BASE_URL}/list/`)
+    loadpage(`${BASE_URL}/manual/`)
+  }, []);
   function loaddata(url) {
-    fetch(url).then((results) => {
-      results.json().then((resp) => {
-        setUser(resp)
+    fetch(url).then((result) => {
+      result.json().then((resp) => {
+        console.log(resp,'sssssssssssssss')
+        const formattedOptions = resp.map(items => ({
+          value: items.id,
+          label: items.keyword
+        }));
+        console.log(formattedOptions,'ffffffffffffffff')
+        setItems(formattedOptions)
+        
       })
     })
   }
+  function loadpage(url){
+    fetch(url).then((result)=>{
+      result.json().then((resp)=>{
+        console.log(resp,'rrrrrrrrrrrrrrrrr')
+        setData(resp)
+      })
+    })
+  }
+
+  const handleChange = (selectedItem) => {
+    setSelectedItem(selectedItem);
+  };
+
   function handleMulti(selectedMulti) {
     setselectedMulti(selectedMulti);
   }
-  function handlesubmit() {
-    let url = `http://127.0.0.1:8000/keyword/?keyword=$(keyword)`
-    loaddata(url)
-
+  function handlesubmit(){
+    data()
   }
-
-  
-  // const itemOptions = user.map((item) => ({ value: item.keyword, label: item.id }));
   return (
     <React.Fragment>
       <Row >
@@ -82,14 +101,25 @@ const FormAdvanced = () => {
                   </Col>
                   <Col lg="10">
                     <div className="text-center mb-3">
-                      <label className="control-label">Multiple Select Queries</label>
-                      <Select
-                        value={selectedMulti}
+                      <label className="control-label">Select keywords</label>
+                      {/* <Select
+                        value={selectedItem}
                         isMulti={true}
                         onChange={() => {
-                          handleMulti();
+                          handleChange();
                         }}
-                        options={optionGroup}
+                        options={items}
+                        classNamePrefix="select2-selection"
+                        // onChange={(e)=>setUser{e.target.value}}
+                      /> */}
+                      
+                      <Select
+                        value={selectedItem}
+                        isMulti={true}
+                        onChange={() => {
+                          handleChange();
+                        }}
+                        options={items}
                         classNamePrefix="select2-selection"
                         // onChange={(e)=>setUser{e.target.value}}
                       />
@@ -111,7 +141,7 @@ const FormAdvanced = () => {
                   </Col>
                   <Col lg='10'>
                     <div className="text-center">
-                      <label className="control-label">Munnualy Select Queries</label>
+                      <label className="control-label">Munnualy Keywords</label>
                       <div className="col-lg-12">
                         <textarea id="txtAddress1Billing" name="txtAddress1Billing"
                           rows="4" className="form-control"></textarea>
@@ -140,34 +170,149 @@ export default FormAdvanced;
 
 
 
+
+
 // import React, { useEffect, useState } from 'react';
 // import Select from 'react-select';
+// import {
+//   Button,
+//   CardTitle,
+//   Col,
+//   Row,
+//   CardBody,
+//   Card,
+
+
+// } from "reactstrap";
 // import axios from 'axios';
 
+// const options = [
+//   { value: 'apple', label: 'Apple' },
+//   { value: 'banana', label: 'Banana' },
+//   { value: 'orange', label: 'Orange' },
+//   { value: 'pear', label: 'Pear' },
+//   { value: 'grape', label: 'Grape' },
+// ];
+
 // const ItemSelect = () => {
-//   const [items, setItems] = useState([]);
-//   const [selectedItems, setSelectedItems] = useState([]);
-
-//   useEffect(() => {
-//     axios.get('/api/items/')
-//       .then((response) => setItems(response.data))
-//       .catch((error) => console.error(error));
-//   }, []);
-
-//   const handleSelectChange = (selectedOptions) => {
-//     setSelectedItems(selectedOptions.map((option) => option.value));
+//   const [selectedOptions, setSelectedOptions] = useState([]);
+//   const [option, setOption] = useState([]);
+//   const handleMultiSelectChange = (selectedOptions) => {
+//     setSelectedOptions(selectedOptions);
 //   };
+//   // const [items, setItems] = useState([]);
 
-//   const itemOptions = items.map((item) => ({ value: item.id, label: item.name }));
 
 //   return (
-    // <Select
-    //   isMulti
-    //   options={itemOptions}
-    //   value={itemOptions.filter((option) => selectedItems.includes(option.value))}
-    //   onChange={handleSelectChange}
-    // />
+//     <div>
+//       <Row>
+//         <Col lg='3'>
+//         </Col>
+//         <Col lg='6'>
+//           <Card>
+//             <CardBody>
+//               <Select
+//                 options={options}
+//                 isMulti
+//                 onChange={handleMultiSelectChange}
+//                 value={selectedOptions}
+//               />
+//               {/* <select multiple>
+//                 {items.map((item) => (
+//                   <option key={item.id} value={item.id}>
+//                     {item.keyword}
+//                   </option>
+//                 ))}
+//               </select> */}
+//             </CardBody>
+//           </Card>
+//         </Col>
+//         <Col lg='3'>
+//         </Col>
+//       </Row>
+//     </div>
 //   );
 // };
+
+// export default ItemSelect;
+
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
+// import {
+//   Row,
+//   Col,
+//   Card,
+//   CardBody,
+
+// } from "reactstrap"
+// function ItemSelect() {
+//   const [items, setItems] = useState([]);
+//   const [selectedItem, setSelectedItem] = useState(null);
+
+//   useEffect(() => {
+//     // fetch('http://127.0.0.1:8000/list/').then((response) => {
+//     //   console.log(response,'rrrrrrrrrrrrrrrr')
+//     //   setItems(response);
+//     // });
+//     loaddata(`http://127.0.0.1:8000/list/`)
+//   }, []);
+//   function loaddata(url) {
+//     fetch(url).then((result) => {
+//       result.json().then((resp) => {
+//         setItems(resp)
+//       })
+//     })
+//   }
+//   const handleChange = (event) => {
+//     setSelectedItem(event.target.value);
+//   };
+
+//   return (
+//     // <div>
+//     //   <select value={selectedItem} onChange={handleChange}>
+//     //     {/* <option value="">--Select an item--</option> */}
+//     //     {items.map((item) => (
+//     //       <option key={item.id} value={item.keyword}>
+//     //         {item.keyword}
+//     //       </option>
+//     //     ))}
+//     //   </select>
+//     //   {selectedItem && (
+//     //     <p>You have selected {items.find((item) => item.id === selectedItem).keyword}</p>
+//     //   )}
+//     // </div>
+//     // <div>
+//       <Row>
+//         <Col lg='3'>
+//         </Col>
+//         <Col lg='6'>
+//           <Card>
+//             <CardBody>
+//               <div>
+       
+//       <select value={selectedItem} onChange={handleChange}>
+//         {/* <option value="">--Select an item--</option> */}
+//         {items.map((item) => (
+//           <option key={item.id} value={item.keyword}>
+//             {item.keyword}
+//           </option>
+//         ))}
+//       </select>
+//       {/* {selectedItem && (
+//         <p>You have selected {items.find((item) => item.id === selectedItem).keyword}</p>
+//       )} */}
+
+
+
+//               </div>
+//             </CardBody>
+//           </Card>
+//         </Col>
+//         <Col lg='3'>
+//         </Col>
+//       </Row>
+    
+//   );
+// }
 
 // export default ItemSelect;

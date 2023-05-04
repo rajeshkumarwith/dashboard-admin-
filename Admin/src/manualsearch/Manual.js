@@ -100,8 +100,9 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <div className="page-content">
-        <Breadcrumbs title="UI Elements" breadcrumbItem="Tabs & Accordions" />
+      <div className="page-content" >
+        {/* <h1>Search Console</h1> */}
+        <Breadcrumbs title="Search Console" breadcrumbItem="Search Console" />
 
         <Row>
           <Col lg={12}>

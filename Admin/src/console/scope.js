@@ -18,12 +18,14 @@ import {
 } from "reactstrap"
 import { AvForm, AvField } from "availity-reactstrap-validation"
 import { useHistory } from 'react-router-dom';
+import { BASE_URL } from '../helpers/BaseUrl'
 
 //Import Breadcrumb
 // import Breadcrumbs from "../../components/Common/Breadcrumb"
 import Breadcrumbs from "../components/Common/Breadcrumb"
 import Data from "./dropdown"
 import Select from "react-select";
+
 
 const options = [
   { value: 'https://', label: 'https://' },
@@ -73,7 +75,8 @@ const Scope = (props) => {
   const [protocol, setProtocol] = useState(options[0].value);
   const [domain, setDomain] = useState('');
   const [path, setPath] = useState('');
-  const [project, setProject] = useState('');
+  // const [user, setUser] = useState('');
+  const [project,setProject]=useState('');
   const history = useHistory();
   const [selectedGroup, setselectedGroup] = useState(null);
   // const [selectedMulti, setselectedMulti] = useState(null);
@@ -81,51 +84,53 @@ const Scope = (props) => {
     setselectedGroup(selectedGroup);
   }
 
-  // function handleMulti(selectedMulti) {
-  //   setselectedMulti(selectedMulti);
-  // }
-
-  function loadData(url) {
-    fetch(url).then((result) => {
-      console.log(result.json(),'rrrrrrrrrrrrrrrrrrrr')
-      if (result.status>=400){
-        result.json()
-      }else{
-        result.json().then(((data)=>localStorage.setItem('authUser',JSON.stringify(data))))
-        props.parentFunction("6")
-
-
-      }
-      result.json().then((resp) => {
-        console.log(resp, 'resreafsdfsd')
-        setProject(resp)
-        
-        
-
-      })
-    })
-  }
-  // if(response.status >=400 ){
-  //   response.json()
-  //   .then((data) => {
-  //     console.log(data)
-  //   })
-    
-
-  // }else{
-  //   response.json()
-  //   .then((data) => {
-  //     localStorage.setItem("authUser", JSON.stringify(data))
-  //     props.history.push('/dashboard')
-  //   })
-    
-    
-  // }
 
   function handelSubmit() {
-    // console.log(project, "gfhfghgfhfgh")
-    loadData(`http://127.0.0.1:8000/verify/?project=${project}`)
-    // props.parentFunction("6")
+    const formData = new FormData();
+    formData.append('project', project);
+
+    fetch('${BASE_URL}/verify/', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((response ) => {
+        if(response.status >=400 ){
+          response.json()
+          .then((data) => {
+            console.log(data)
+            // alert(data.message)
+            // alert('not verify')
+          })
+          
+
+        }else{
+          // response.json()
+          // .then((data) => {
+          //   // props.history.push('/dashboard')
+           
+
+          // })
+          alert('verify domain')
+          props.parentFunction("6")
+          
+          
+        }
+      })
+     
+      .catch((error) => {
+        
+        console.error('Error:', error);
+      });
+
+  }
+
+  function toTitleCase(str) {
+    return str.replace(
+      /\w\S*/g,
+      function(txt) {
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+      }
+    );
   }
 
   const handlSubmit = (event) => {
@@ -192,6 +197,7 @@ const Scope = (props) => {
 
   return (
     <React.Fragment>
+      {/* <Breadcrumbs title="Search Console" breadcrumbItem="Goggle Console" /> */}
       <div className="mt-5 text-center"
       // style={{
       //   display: "flex",
@@ -215,31 +221,31 @@ const Scope = (props) => {
 
                 </CardSubtitle>
 
-                <AvForm onSubmit={() => handelSubmit()}>
+                <AvForm onValidSubmit={() => handelSubmit()}>
 
                   <Container>
                     <Row>
                       <Col sm={2} className="" >
-                        {/* <form> */}
-                          {/* <div className="mb-3">
-                            {/* <Label>Single Select</Label> */}
-                            {/* <Select
+                        {/* <form> 
+                          <div className="mb-3">
+                             <Label>Single Select</Label>
+                             <Select
                               value={selectedGroup}
                               onChange={() => {
                                 handleSelectGroup();
                               }}
                               options={optionGroup}
-                              classNamePrefix="select2-selection" */}
-                            
-                          {/* </div> */}
+                              classNamePrefix="select2-selection" 
+                            />
+                          </div>
 
-                        {/* </form> */}
+                         </form> */}
                       </Col>
                       <Col sm={8} >
                         <AvField
                           className="p-2"
                           name="Domain or path"
-                          placeholder="Type Something"
+                          placeholder="Domain URL"
                           type="text"
                           errorMessage="Enter Domain path"
                           validate={{ required: { value: true } }}
@@ -274,6 +280,7 @@ const Scope = (props) => {
                           type="project name"
                           placeholder="project name"
                           errorMessage="Enter project name"
+                          value={toTitleCase(project.split(".")[0])}
                           validate={{ required: { value: true } }}
                           onChange={(e) => setProject(e.target.value)}
                         />

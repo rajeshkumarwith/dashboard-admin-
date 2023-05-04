@@ -173,7 +173,7 @@ const EmailTemplateBilling = () => {
                                           Thanks for using{" "}
                                           <b style={{ fontWeight: "600" }}>
                                             {" "}
-                                            Qovex
+                                            Doddle HQ
                                             </b>
                                             .
                                           </h2>
@@ -606,7 +606,7 @@ const EmailTemplateBilling = () => {
                                         }}
                                         valign="top"
                                       >
-                                        © {new Date().getFullYear()} Qovex
+                                        © {new Date().getFullYear()} Doddle HQ
                                         </td>
                                     </tr>
                                   </tbody>
