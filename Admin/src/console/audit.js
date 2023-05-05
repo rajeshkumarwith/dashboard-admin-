@@ -50,10 +50,10 @@ const FormAdvanced = () => {
   
 
   useEffect(() => {
-    loaddata(`${BASE_URL}/api/list/`)
-    loadpage(`${BASE_URL}/api/manual/`)
-    // loaddata('http://127.0.0.1:8000/api/list/')
-    // loadpage('http://127.0.0.1:8000/api/manual/')
+    // loaddata(`${BASE_URL}/api/list/`)
+    // loadpage(`${BASE_URL}/api/manual/`)
+    loaddata(`${BASE_URL}/list/`)
+    loadpage(`${BASE_URL}/manual/`)
   }, []);
   function loaddata(url) {
     fetch(url).then((result) => {

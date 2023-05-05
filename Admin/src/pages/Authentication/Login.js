@@ -33,13 +33,14 @@ function Login(props){
           .then((data) => {
             console.log(data)
           })
-          
+          alert('User not found')
 
         }else{
           response.json()
           .then((data) => {
             localStorage.setItem("authUser", JSON.stringify(data))
             props.history.push('/dashboard')
+            alert('login success')
           })
           
           
