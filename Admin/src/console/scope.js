@@ -18,8 +18,7 @@ import {
 } from "reactstrap"
 import { AvForm, AvField } from "availity-reactstrap-validation"
 import { useHistory } from 'react-router-dom';
-import { BASE_URL } from '../helpers/BaseUrl'
-
+import { BASE_URL } from "./BaseUrl";
 //Import Breadcrumb
 // import Breadcrumbs from "../../components/Common/Breadcrumb"
 import Breadcrumbs from "../components/Common/Breadcrumb"
@@ -89,7 +88,7 @@ const Scope = (props) => {
     const formData = new FormData();
     formData.append('project', project);
 
-    fetch('${BASE_URL}/verify/', {
+    fetch(`${BASE_URL}/verify/`, {
       method: 'POST',
       body: formData,
     })

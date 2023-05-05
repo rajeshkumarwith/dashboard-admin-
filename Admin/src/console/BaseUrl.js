@@ -1,1 +1,1 @@
-export const BASE_URL = 'http://psd2htmlx.com:7001';
+export const BASE_URL = 'https://app.doddlehq.com/api';

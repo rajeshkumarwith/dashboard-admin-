@@ -17,8 +17,7 @@ import "flatpickr/dist/themes/material_blue.css";
 
 //Import Breadcrumb
 import Breadcrumbs from "../components/Common/Breadcrumb";
-import { BASE_URL } from '../helpers/BaseUrl'
-
+import { BASE_URL } from "./BaseUrl";
 
 
 const optionGroup = [
@@ -44,13 +43,17 @@ const FormAdvanced = () => {
   const [user, setUser] = useState(null);
   const [items, setItems] = useState([]);
   const [data,setData]=useState([]);
+  // const [dataCount, setDataCount]=useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedMulti, setselectedMulti] = useState(null);
-
+  const [keyword, setkeyword]=useState(null);
+  
 
   useEffect(() => {
-    loaddata(`${BASE_URL}/list/`)
-    loadpage(`${BASE_URL}/manual/`)
+    loaddata(`${BASE_URL}/api/list/`)
+    loadpage(`${BASE_URL}/api/manual/`)
+    // loaddata('http://127.0.0.1:8000/api/list/')
+    // loadpage('http://127.0.0.1:8000/api/manual/')
   }, []);
   function loaddata(url) {
     fetch(url).then((result) => {
@@ -79,12 +82,23 @@ const FormAdvanced = () => {
     setSelectedItem(selectedItem);
   };
 
-  function handleMulti(selectedMulti) {
-    setselectedMulti(selectedMulti);
-  }
+  // function handleMulti(selectedMulti) {
+  //   setselectedMulti(selectedMulti);
+  // }
   function handlesubmit(){
-    data()
+    loadpage(`${BASE_URL}/api/manual/?keyword=${keyword}`)
   }
+
+  // const Search = key => {
+  //   const newResults = dataCount.filter(crypto => crypto.name.includes(key));
+  //   console.log('newResults', newResults);
+  //   setData(newResults);
+  // };
+
+  // const cryptoJsx = data.map(crypto => (
+  //   <div key={crypto.id}>{crypto.id}</div>
+  // ));
+
   return (
     <React.Fragment>
       <Row >
@@ -141,9 +155,10 @@ const FormAdvanced = () => {
                   </Col>
                   <Col lg='10'>
                     <div className="text-center">
-                      <label className="control-label">Munnualy Keywords</label>
+                      <label className="control-label" value={keyword} >Munnualy Keywords</label>
                       <div className="col-lg-12">
-                        <textarea id="txtAddress1Billing" name="txtAddress1Billing"
+                      {/* onChange={(e) => setEndDate(e.target.value)}  */}
+                        <textarea id="txtAddress1Billing"     onChange={(e) =>setData(e.target.value)}         placeholder="Manualy  search" name="txtAddress1Billing"
                           rows="4" className="form-control"></textarea>
                       </div>
                     </div>

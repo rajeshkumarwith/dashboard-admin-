@@ -12,7 +12,7 @@ import { AvForm, AvField } from "availity-reactstrap-validation"
 
 // actions
 import { loginUser, apiError, socialLogin } from "../../store/actions"
-
+import { BASE_URL } from '../../console/BaseUrl'
 
 function Login(props){
   const [email,setEmail]=useState('');
@@ -23,7 +23,7 @@ function Login(props){
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
-    fetch('${BASE_URL}/login/', {
+    fetch(`${BASE_URL}/login/`, {
       method: 'POST',
       body: formData,
     })
