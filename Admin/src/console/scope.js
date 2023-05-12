@@ -98,7 +98,7 @@ const Scope = (props) => {
           .then((data) => {
             console.log(data)
             // alert(data.message)
-            // alert('not verify')
+            alert('not verify')
           })
           
 

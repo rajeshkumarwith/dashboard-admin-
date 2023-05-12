@@ -47,25 +47,32 @@ const FormAdvanced = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedMulti, setselectedMulti] = useState(null);
   const [keyword, setkeyword]=useState(null);
+  const [project,setProject]=useState(null);
   
 
   useEffect(() => {
-    // loaddata(`${BASE_URL}/api/list/`)
-    // loadpage(`${BASE_URL}/api/manual/`)
     loaddata(`${BASE_URL}/list/`)
+    // loadpage(`${BASE_URL}/api/manual/`)
+    // loaddata(`${BASE_URL}/list/`)
+    // loaddata('http://127.0.0.1:8000/api/list/')
     loadpage(`${BASE_URL}/manual/`)
   }, []);
   function loaddata(url) {
     fetch(url).then((result) => {
       result.json().then((resp) => {
         console.log(resp,'sssssssssssssss')
-        const formattedOptions = resp.map(items => ({
-          value: items.id,
-          label: items.keyword
-        }));
-        console.log(formattedOptions,'ffffffffffffffff')
-        setItems(formattedOptions)
-        
+        if (resp>=400){
+          result.json()
+        }else{
+          const formattedOptions = resp.map(items => ({
+            value: items.id,
+            label: items.keyword
+          }));
+          console.log(formattedOptions,'ffffffffffffffff')
+          setItems(formattedOptions)
+          
+        }
+       
       })
     })
   }

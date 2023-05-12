@@ -51,7 +51,7 @@ documentation=https://www.shortautomaton.com/
 
 react
 1.npm run build
-
+hkj
 for react compiler
 1.https://onecompiler.com/react
 
@@ -60,3 +60,4 @@ for react compiler
 if port already used then use
 1.sudo lsof -i :3000
 2.kill -9 <PID>
+
